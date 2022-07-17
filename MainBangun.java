@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 abstract class Bangun2D{
@@ -63,7 +64,7 @@ public class MainBangun{
 		Scanner inp = new Scanner(System.in);
 		System.out.println("\n---------[[Simulasi Bangun]]---------\n   | 1. Buat objek bangun      |\n   | 2. Ubah atribut           |\n   | 3. Deskripsi sebuah objek |\n   | 4. Deskripsi semua objek  |\n   | 5. Keluar program         |");
 		System.out.println("-------------------------------------");
-		System.out.println("Pilih?>:");
+		System.out.print("Pilih?>: ");
 		int menuHome = inp.nextInt();
 		return menuHome;
 	}
@@ -106,7 +107,7 @@ public class MainBangun{
 						System.out.print("Lebar? ");
 						float lebar = inp.nextFloat();
 						arrBangun[countId] = new Segiempat(countId, panjang, lebar);
-						System.out.println("Objek Segiempat dengan ID = " + countId + "berhasil dibuat!");
+						System.out.println("Objek Segiempat dengan ID = " + countId + " berhasil dibuat!");
 						countId++;
 						break;
 					}
@@ -116,59 +117,53 @@ public class MainBangun{
 				}
 			}
 			else if (pilih == 2){
-				System.out.println("Objek ID?\n(0-Segitiga atau 1-Segiempat)");
-				int menu2 = inp.nextInt();
-				for (;;){
-					if (menu2 == 0){
+				try{
+					for (;;){
 						System.out.println("Nomor ID?\n(Masukkan angka 1-" + countId + ") ");
 						int id = inp.nextInt();
 						arrBangun[id].deskripsi();
-						System.out.print("Masukkan alas baru: ");
-						float al = inp.nextFloat();
-						System.out.print("Masukkan tinggi baru: ");
-						float ti = inp.nextFloat();
-						arrBangun[id].setPanjang(al);
-						arrBangun[id].setTinggi(ti);
-						break;
-					}
-					else if (menu2 == 1){
-						System.out.println("Nomor ID?\n(Masukkan angka 1-" + countId + ") ");
-						int id = inp.nextInt();
-						arrBangun[id].deskripsi();
-						System.out.print("Masukkan panjang baru: ");
-						float pa = inp.nextFloat();
-						System.out.print("Masukkan lebar baru: ");
-						float le = inp.nextFloat();
-						arrBangun[id].setPanjang(pa);
-						arrBangun[id].setTinggi(le);
-						break;
-					}
-					else{
-						System.out.println("Masukkan 0 untuk objek Segitiga atau 1 untuk objek Segiempat");
+						if (id <= countId){
+							System.out.print("Masukkan alas/panjang baru: ");
+							float alpa = inp.nextFloat();
+							System.out.print("Masukkan tinggi/lebar baru: ");
+							float tile = inp.nextFloat();
+							arrBangun[id].setPanjang(alpa);
+							arrBangun[id].setTinggi(tile);
+							break;
+						}
+						else{
+							System.out.println("(Masukkan angka 1-" + countId + ")");
+						}
 					}
 				}
+				catch(NullPointerException e){
+					System.out.println("Belum ada bangun datar yang telah dibuat.");
+				}
 			}
+				
 			else if (pilih == 3){
-					
+				try{
 					for (;;){
 						System.out.println("Nomor ID?\n(Masukkan angka 1-" + countId + ") ");
 						int id = inp.nextInt();
 						arrBangun[id].deskripsi();
 						break;
-						
-					
+					}
+				}
+				catch(NullPointerException e){
+					System.out.println("Belum ada bangun datar yang telah dibuat.");
 				}
 			}
 			else if (pilih == 4){
-					
-					for(int i=0; i<arrBangun.length; i++) {
-						try {arrBangun[i].deskripsi();}
-						catch(NullPointerException e) {
-							continue;
-						}
+				for(int i = 0; i < arrBangun.length; i++){
+					try {
+						arrBangun[i].deskripsi();
 					}
-				
+					catch(NullPointerException e){
+						continue;
+					}
 				}
+			}
 			else if (pilih == 5){
 					break;
 				}
