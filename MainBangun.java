@@ -68,11 +68,6 @@ public class MainBangun{
 		int menuHome = inp.nextInt();
 		return menuHome;
 	}
-	public static void displayBangun(Bangun2D[] arrBangun){
-		for(int j = 0; j < arrBangun.length ; j++){
-			System.out.println("ID = " + arrBangun[j].getId() + "; Panjang = " + arrBangun[j].getPanjang() + "cm; Tinggi = " + arrBangun[j].getTinggi() + "; Luas = " + arrBangun[j].hitungLuas() + "cm^2");
-		}
-	}
 	public static void main (String args[]){
 		System.out.println("============ KELOMPOK PBO SIMULASI BANGUN ============");
 		System.out.println("Nama	: I Made Novandy Asardi ---- NIM: 064002100030");
