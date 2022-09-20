@@ -1,0 +1,6 @@
+data_nathan_csv = read.csv("C:/Users/PC/Documents/Tugas Univ/TP/prak/Prak1_Data.csv")
+View(data_nathan_csv)
+install.packages("xlsx")
+library("xlsx")
+data_nathan_xlsx= read.xlsx("C:/Users/PC/Documents/Tugas Univ/TP/prak/Praktikum1.xlsx",1)
+
